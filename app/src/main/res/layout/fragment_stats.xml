@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StatsFragment">
+
+    <Button
+        android:id="@+id/buttonLastWeek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/text_stats_lastweek"
+        app:layout_constraintEnd_toStartOf="@+id/buttonLastMonth"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonLastMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_stats_lastmonth"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonLastWeek"
+        app:layout_constraintEnd_toStartOf="@+id/buttonGraph"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonLastWeek" />
+
+    <Button
+        android:id="@+id/buttonGraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_stats_graph"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonLastMonth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonLastMonth" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

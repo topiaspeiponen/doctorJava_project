@@ -26,6 +26,12 @@ import androidx.core.app.NavUtils;
 import java.util.List;
 
 /**
+ * @author Created by Topias on 25/04/2019.
+ * @version 1.0
+ * @since 1.0
+ */
+
+/**
  * A {@link PreferenceActivity} that presents a set of application settings. On
  * handset devices, settings are presented as a single list. On tablets,
  * settings are split by category, with category headers shown to the left of
