@@ -78,4 +78,13 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="text_home_todays_steps">Today\'s steps</string>
+    <string name="text_home_level">Level</string>
+    <string name="text_home_total_points">Total points</string>
+    <string name="text_stats_lastweek">Last week</string>
+    <string name="text_stats_lastmonth">Last month</string>
+    <string name="text_stats_graph">Graph</string>
+    <string name="title_activity_teastact">teastact</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
