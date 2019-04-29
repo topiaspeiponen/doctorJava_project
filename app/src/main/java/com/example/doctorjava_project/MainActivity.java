@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Loading the default fragment, which is the MainFragment
+        //Loading the default fragment, which is the MainFragment.
         loadFragment(new MainFragment());
 
         //Getting bottom navigation view and attaching the listener
