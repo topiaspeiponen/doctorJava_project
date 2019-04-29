@@ -90,7 +90,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             } else {
                 // For all other preferences, set the summary to the value's
                 // simple string representation.
-                //moi
+                //moi0
                 preference.setSummary(stringValue);
             }
             return true;
