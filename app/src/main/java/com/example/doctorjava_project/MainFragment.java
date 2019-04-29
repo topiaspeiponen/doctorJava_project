@@ -4,6 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -18,6 +22,40 @@ import androidx.fragment.app.Fragment;
  * in the screen view.
  */
 public class MainFragment extends Fragment {
+
+    //permanently stored variables, tentative list (could change)
+    private double coins = 0.0;
+    private int steps = 0;
+    private int unprocessedSteps;
+    //end stored
+    //each building also has variables to store
+
+    public double getCoins(){
+        return this.coins;
+    }
+
+    public void setCoins(double amount){
+        this.coins = amount;
+    }
+
+    public void addCoins(double amount){
+        this.coins += amount;
+    }
+
+    public void removeCoins(double amount){
+        this.coins -= amount;
+    }
+
+    //creating Buildings
+    private Building coinBuilding = new CoinBuilding(1, 1, 1);
+    private Building building1 = new Building(coinBuilding, 0,0,1);
+    private Building building2 = new Building(building1, 0, 0, 1);
+    private Building building3 = new Building(building2, 0, 0, 1);
+    private Building building4 = new Building(building3, 0, 0, 1);
+    private Building building5 = new Building(building4, 0, 0, 1);
+    private ArrayList<Building> buildingList = new ArrayList<Building>(Arrays.asList(coinBuilding, building1, building2, building3, building4, building5));
+    //buildingList contains references to all buildings, with index 0 being a CoinBuilding.
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
