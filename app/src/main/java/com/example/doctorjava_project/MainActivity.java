@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         navigation.setOnNavigationItemSelectedListener(this);
     }
 
+
     /**
      * Loads the fragment given as a parameter and replaces
      * the current one in the container.
