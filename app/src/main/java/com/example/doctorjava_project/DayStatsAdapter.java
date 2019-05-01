@@ -38,11 +38,11 @@ public class DayStatsAdapter extends RecyclerView.Adapter<DayStatsAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView dayId, dayDate, dayPoints;
+        public TextView dayDate, dayPoints;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            dayId = itemView.findViewById(R.id.dayId);
+
             dayDate = itemView.findViewById(R.id.dayDate);
             dayPoints = itemView.findViewById(R.id.dayPoints);
         }
