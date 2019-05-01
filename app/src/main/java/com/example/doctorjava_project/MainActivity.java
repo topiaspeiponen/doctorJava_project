@@ -52,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "second clicked", Toast.LENGTH_SHORT)
                         .show();
+
+                //Intent intent = new Intent(MainActivity.this, Settings.class);
+                Intent intent = Settings.makeIntent(MainActivity.this);
+                startActivity(intent);
             }
         });
     }
