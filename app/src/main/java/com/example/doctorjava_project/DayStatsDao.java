@@ -7,6 +7,12 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+/**
+ * @author Created by Topias on 1/5/2019
+ * @version 1.0
+ * @since 1.0
+ */
+
 @Dao
 public interface DayStatsDao {
     @Query("SELECT * FROM daystats")
