@@ -11,6 +11,12 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * @author Created by Topias on 1/5/2019
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class DayStatsAdapter extends RecyclerView.Adapter<DayStatsAdapter.ViewHolder> {
 
     List<DayStats> dayStatsArrayList;

@@ -4,6 +4,12 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ * @author Created by Topias on 1/5/2019
+ * @version 1.0
+ * @since 1.0
+ */
+
 @Entity
 public class DayStats {
     @PrimaryKey (autoGenerate = true)
