@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
     private SensorManager sensorManager;
     private TextView count;
     boolean activityRunning = true;
+    private Button stepPlusButton;
 
     private int deltaStepTracker = -1;
 
@@ -90,8 +92,15 @@ public class MainFragment extends Fragment implements SensorEventListener {
                 updateStuff();
             }
         }, 0, 500);
+
         return inflater.inflate(R.layout.fragment_main, null);
 
+    }
+
+    public void debugAddSteps(View v){
+        this.steps += 5;
+        this.unprocessedSteps +=5;
+        this.updateUI();
     }
 
     @Override
@@ -100,6 +109,13 @@ public class MainFragment extends Fragment implements SensorEventListener {
         this.count = getView().findViewById(R.id.stepCounter);
         this.count.setText("0");
         context = getContext();
+        this.stepPlusButton = getView().findViewById(R.id.stepAdd);
+        stepPlusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                debugAddSteps(v);
+            }});
+
 
         sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
     }
@@ -244,6 +260,8 @@ public class MainFragment extends Fragment implements SensorEventListener {
 
     private void processTick(){
         //TODO: game logic
+        Log.d("updateTest", "steps count: " + this.steps);
+        Log.d("updateTest", "unprocessedSteps count: " + this.unprocessedSteps);
     }
 
     final Handler myHandler = new Handler(); //For updating GUI on regular intervals. Android dislikes you manually doing that.
