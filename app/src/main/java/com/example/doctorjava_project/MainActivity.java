@@ -29,37 +29,42 @@ import android.widget.Toast;
  *
  * The activity_main.xml contains only the bottom navigation bar and the fragment container
  */
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, ExampleDialog.ExampleDialogListener {
+    private TextView textviewlenght;
+    private Button lenghtButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        launchButton();
+
+        TextView textviewlenght= (TextView) findViewById(R.id.lenght);
+        Button lenghtButton = (Button) findViewById(R.id.askForLenght);
+        lenghtButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         //Loading the default fragment, which is the MainFragment
         loadFragment(new MainFragment());
 
         //Getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
-    }
-    private void launchButton() {
-        Button btn = (Button) findViewById(R.id.btn);
 
-        btn.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "second clicked", Toast.LENGTH_SHORT)
-                        .show();
-
-                //Intent intent = new Intent(MainActivity.this, Settings.class);
-                Intent intent = Settings.makeIntent(MainActivity.this);
-                startActivity(intent);
-            }
-        });
     }
 
+
+
+    @Override
+    public void applyTexts(String lenght) {
+        textviewlenght.setText(lenght);
+    }
 
     /**
      * Loads the fragment given as a parameter and replaces
