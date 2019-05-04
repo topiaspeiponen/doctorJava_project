@@ -87,4 +87,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/totalPoints" />
 
+    <Button
+        android:id="@+id/stepAddButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="@string/text_home_step_button"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_container"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_container"
+        app:layout_constraintTop_toBottomOf="@+id/stepCounter" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,8 @@ package com.example.doctorjava_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.style.UpdateAppearance;
+import android.text.style.UpdateLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +13,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.Nullable;
@@ -19,6 +25,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
+import androidx.room.Update;
 
 /**
  * @author Created by Topias on 25/04/2019.
@@ -42,11 +49,14 @@ public class StatsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
 
+
+
         Button weekButton = getView().findViewById(R.id.buttonLastWeek);
 
 
         final DayStatsDatabase db = Room.databaseBuilder(getContext(), DayStatsDatabase.class, "production")
                 .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
                 .build();
 
         final List<DayStats> dayStatsList = db.dayStatsDao().getAllDayStats();
@@ -69,7 +79,9 @@ public class StatsFragment extends Fragment {
         weekButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: pressed!");
-                db.dayStatsDao().insertAll(new DayStats(130598, 3442234));
+                Date date = Calendar.getInstance().getTime();
+                db.dayStatsDao().insertAll(new DayStats(date, 3));
+
             }
         });
 
