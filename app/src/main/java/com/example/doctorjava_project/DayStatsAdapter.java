@@ -17,6 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
  * @since 1.0
  */
 
+/**
+ * This class is the adapter for implementing the database into the
+ * RecyclerView component in the Stats fragment.
+ */
 public class DayStatsAdapter extends RecyclerView.Adapter<DayStatsAdapter.ViewHolder> {
 
     List<DayStats> dayStatsArrayList;
@@ -34,7 +38,8 @@ public class DayStatsAdapter extends RecyclerView.Adapter<DayStatsAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.dayDate.setText(Integer.toString(dayStatsArrayList.get(position).getDayDate()));
+        holder.dayDate.setText(dayStatsArrayList.get(position).getDayDate().getDate() + "/" + (dayStatsArrayList.get(position).getDayDate().getMonth()+1)
+        + "/" + (dayStatsArrayList.get(position).getDayDate().getYear() + 1900));
         holder.dayPoints.setText(Integer.toString(dayStatsArrayList.get(position).getPoints()));
     }
 

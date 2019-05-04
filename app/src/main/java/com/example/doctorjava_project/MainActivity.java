@@ -1,5 +1,7 @@
 package com.example.doctorjava_project;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -11,8 +13,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import java.util.Calendar;
 
 /**
  * @author Created by Topias on 25/04/2019.
@@ -24,6 +29,9 @@ import android.widget.TextView;
  * The MainActivity class essentially holds all the functionality in operating
  * the bottom navigation and implementing all the fragments inside the container
  * in activity_main.xml
+ *
+ * It also holds the alarm system for depositing info gathered during the today
+ * into the database
  *
  * The activity_main.xml contains only the bottom navigation bar and the fragment container
  */
@@ -42,6 +50,38 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         //Getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
+
+        /**
+         * The next 25 lines of codes handle the data sending at daily interval.
+         * It checks if there is an alarm created, if not, it creates a new one and sets
+         * the time at which the DataAlerm.class is alerted, which will send the data gathered
+         * during the day's activities to the database.
+         */
+        boolean alarmUp = (PendingIntent.getBroadcast(this, 0,
+                new Intent(this, DataAlarm.class),
+                PendingIntent.FLAG_NO_CREATE) != null);
+
+        if (  !alarmUp) {
+            Intent intent = new Intent(this, DataAlarm.class);
+            intent.putExtra("activate", true);
+            PendingIntent pendingIntent =
+                    PendingIntent.getBroadcast(this, 0,
+                            intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            calendar.set(Calendar.HOUR_OF_DAY, 2);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+
+            AlarmManager alarmManager =
+                    (AlarmManager)
+                            this.getSystemService(this.ALARM_SERVICE);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+                    calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
+                    pendingIntent);
+
+        }
     }
 
     /**

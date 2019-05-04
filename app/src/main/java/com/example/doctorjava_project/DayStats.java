@@ -1,8 +1,11 @@
 package com.example.doctorjava_project;
 
+import java.util.Date;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 /**
  * @author Created by Topias on 1/5/2019
@@ -10,16 +13,19 @@ import androidx.room.PrimaryKey;
  * @since 1.0
  */
 
-@Entity
+/**
+ * This the DayStats database entity, which is essentially the table for the day's history stats
+ */
+@Entity (tableName = "day_stats")
 public class DayStats {
     @PrimaryKey (autoGenerate = true)
     private int id;
     @ColumnInfo (name = "date")
-    private int dayDate;
+    private Date dayDate;
     @ColumnInfo (name = "points")
     private int points;
 
-    public DayStats(int dayDate, int points) {
+    public DayStats(Date dayDate, int points) {
         this.dayDate = dayDate;
         this.points = points;
     }
@@ -29,9 +35,9 @@ public class DayStats {
         this.id = id;
     }
 
-    public int getDayDate() {
+    public Date getDayDate() {
         return dayDate;
-    } public void setDayDate(int dayDate) {
+    } public void setDayDate(Date dayDate) {
         this.dayDate = dayDate;
     }
 
