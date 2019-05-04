@@ -34,7 +34,7 @@ public class StoreFragment extends Fragment {
             infoButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    openDialoglenght();
+                    openDialog();
                 }
             });
         TextView textviewlenght= (TextView) view.findViewById(R.id.textViewLenght);
@@ -43,7 +43,7 @@ public class StoreFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                openDialog();
+                openDialoglenght();
             }
         });
                     return view;
@@ -58,6 +58,11 @@ public class StoreFragment extends Fragment {
         ExampleDialog exampleDialog = new ExampleDialog();
         exampleDialog.show(getFragmentManager(),"example dialog");
     }
+
+    public void applyTexts(String lenght) {
+        textviewLenght.setText(lenght);
+    }
+
 
 
 

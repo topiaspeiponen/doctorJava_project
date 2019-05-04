@@ -29,9 +29,8 @@ import android.widget.Toast;
  *
  * The activity_main.xml contains only the bottom navigation bar and the fragment container
  */
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, ExampleDialog.ExampleDialogListener {
-    private TextView textviewlenght;
-    private Button lenghtButton;
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+    //deleted implements ExampleDialog.ExampleDialogListener
 
 
     @Override
@@ -39,15 +38,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView textviewlenght= (TextView) findViewById(R.id.lenght);
-        Button lenghtButton = (Button) findViewById(R.id.askForLenght);
-        lenghtButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
 
         //Loading the default fragment, which is the MainFragment
         loadFragment(new MainFragment());
@@ -61,10 +53,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
 
 
-    @Override
-    public void applyTexts(String lenght) {
-        textviewlenght.setText(lenght);
-    }
+
 
     /**
      * Loads the fragment given as a parameter and replaces
