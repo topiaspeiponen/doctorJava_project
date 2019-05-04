@@ -21,7 +21,7 @@ import androidx.fragment.app.Fragment;
  * Inflates the layout (renders it in the memory), which makes it appear
  * in the screen view.
  */
-public class StoreFragment extends Fragment {
+public class StoreFragment extends Fragment implements ExampleDialog.ExampleDialogListener {
     private Button infoButton;
     private TextView textviewLenght;
     private Button lenghtButton;
