@@ -12,7 +12,7 @@ import androidx.room.RoomDatabase;
 /**
  * This class defines the DayStats database.
  */
-@Database(entities = {DayStats.class}, version = 2, exportSchema = false)
+@Database(entities = {DayStats.class}, version = 3, exportSchema = false)
 @androidx.room.TypeConverters({TypeConverters.class})
 public abstract class DayStatsDatabase extends RoomDatabase {
     public abstract DayStatsDao dayStatsDao();

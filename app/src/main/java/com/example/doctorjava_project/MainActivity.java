@@ -20,7 +20,7 @@ import java.util.Calendar;
 
 /**
  * @author Created by Topias on 25/04/2019.
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  */
 
@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());
-            calendar.set(Calendar.HOUR_OF_DAY, 2);
-            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 1);
             calendar.set(Calendar.SECOND, 0);
 
             AlarmManager alarmManager =
