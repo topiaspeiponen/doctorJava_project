@@ -102,7 +102,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
     public void debugAddSteps(View v){
         this.steps += 5;
         this.unprocessedSteps +=5;
-        this.coins += 5;
+
         this.updateUI();
     }
 
@@ -275,6 +275,13 @@ public class MainFragment extends Fragment implements SensorEventListener {
         updateUI();
     }
 
+    public void buyBuilding(Building building){
+        double coinsSpent = building.buy(this.coins);
+        if (coinsSpent > 0){
+            this.coins -= coinsSpent;
+        }
+    }
+
     public void updateUI(){
         count.setText(Integer.toString(this.steps));
         coinCount.setText(Double.toString(this.coins));
@@ -299,9 +306,16 @@ public class MainFragment extends Fragment implements SensorEventListener {
         //TODO: game logic
         Log.d("updateTest", "steps count: " + this.steps);
         Log.d("updateTest", "unprocessedSteps count: " + this.unprocessedSteps);
+        for (int i = 0; i < this.buildingList.size(); i++){
+            double produced = this.buildingList.get(i).produce();
+            if (produced > 0){
+                Log.d("updateTest", "Coins produced: " + produced);
+                this.coins += produced;
+            }
+        }
     }
 
-    final Handler myHandler = new Handler(); //For updating GUI on regular intervals. Android dislikes you manually doing that.
+    final Handler myHandler = new Handler(); //For updating GUI on regular intervals. Android dislikes you manually doing that. Need handler + runnable
 
 
     final Runnable myRunnable = new Runnable() {  //Android handler will run this to update GUI
