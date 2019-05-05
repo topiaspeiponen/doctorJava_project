@@ -8,34 +8,45 @@
     tools:context=".StatsFragment">
 
     <Button
-        android:id="@+id/buttonLastWeek"
+        android:id="@+id/buttonDummy"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:text="@string/text_stats_dummy_add"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonClear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.961"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerView"
+        android:layout_width="386dp"
+        android:layout_height="436dp"
+        android:layout_marginTop="30dp"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDummy" />
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/text_stats_lastweek"
-        app:layout_constraintEnd_toStartOf="@+id/buttonLastMonth"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="31dp"
+        android:text="@string/text_stats_last2weeks"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonLastMonth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_stats_lastmonth"
-        app:layout_constraintBaseline_toBaselineOf="@+id/buttonLastWeek"
-        app:layout_constraintEnd_toStartOf="@+id/buttonGraph"
+        android:id="@+id/buttonClear"
+        android:layout_width="71dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="21dp"
+        android:text="Clear"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDummy"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonLastWeek" />
-
-    <Button
-        android:id="@+id/buttonGraph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_stats_graph"
-        app:layout_constraintBaseline_toBaselineOf="@+id/buttonLastMonth"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonLastMonth" />
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,9 @@
 package com.example.doctorjava_project;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,15 +14,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 /**
  * @author Created by Topias on 25/04/2019.
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  */
 
@@ -28,12 +34,15 @@ import android.widget.Toast;
  * the bottom navigation and implementing all the fragments inside the container
  * in activity_main.xml
  *
+ * It also holds the alarm system for depositing info gathered during the today
+ * into the database
+ *
  * The activity_main.xml contains only the bottom navigation bar and the fragment container
  */
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
-    //deleted implements ExampleDialog.ExampleDialogListener
 
 
+    private SensorManager sensorManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
 
         //Loading the default fragment, which is the MainFragment
+        //Loading the default fragment, which is the MainFragment.
         loadFragment(new MainFragment());
 
         //Getting bottom navigation view and attaching the listener
@@ -52,6 +62,38 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         navigation.setOnNavigationItemSelectedListener(this);
 
 
+
+        /**
+         * The next 25 lines of codes handle the data sending at daily interval.
+         * It checks if there is an alarm created, if not, it creates a new one and sets
+         * the time at which the DataAlerm.class is alerted, which will send the data gathered
+         * during the day's activities to the database.
+         */
+        boolean alarmUp = (PendingIntent.getBroadcast(this, 0,
+                new Intent(this, DataAlarm.class),
+                PendingIntent.FLAG_NO_CREATE) != null);
+
+        if (  !alarmUp) {
+            Intent intent = new Intent(this, DataAlarm.class);
+            intent.putExtra("activate", true);
+            PendingIntent pendingIntent =
+                    PendingIntent.getBroadcast(this, 0,
+                            intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 1);
+            calendar.set(Calendar.SECOND, 0);
+
+            AlarmManager alarmManager =
+                    (AlarmManager)
+                            this.getSystemService(this.ALARM_SERVICE);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+                    calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
+                    pendingIntent);
+
+        }
     }
 
 
