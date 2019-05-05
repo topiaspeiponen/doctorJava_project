@@ -1,6 +1,8 @@
 package com.example.doctorjava_project;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -46,9 +48,11 @@ public class MainFragment extends Fragment implements SensorEventListener {
 
     private Context context;
     private SensorManager sensorManager;
-    private TextView count;
+    private TextView count, coinCount;
     boolean activityRunning = true;
     private Button stepPlusButton;
+    private static final String STEP_PREF = "StepCountPref";
+    private static final String COIN_PREF = "CoinCountPref";
 
     private int deltaStepTracker = -1;
 
@@ -84,7 +88,6 @@ public class MainFragment extends Fragment implements SensorEventListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         Timer updateTimer = new Timer();
         updateTimer.schedule(new TimerTask() {
             @Override
@@ -100,14 +103,14 @@ public class MainFragment extends Fragment implements SensorEventListener {
     public void debugAddSteps(View v){
         this.steps += 5;
         this.unprocessedSteps +=5;
+        this.coins += 5;
         this.updateUI();
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        this.count = getView().findViewById(R.id.stepCounter);
-        this.count.setText("0");
+
         context = getContext();
         this.stepPlusButton = getView().findViewById(R.id.stepAdd);
         stepPlusButton.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +139,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
     @Override
     public void onStop() {
         super.onStop();
+
         Log.d("doctorDebug", "onStop()");
         unregisterSensorListener();
     }
@@ -145,8 +149,24 @@ public class MainFragment extends Fragment implements SensorEventListener {
     public void onResume() {
         super.onResume();
         Log.d("doctorDebug", "onResume()");
-        registerSensorListener();
+        Log.d("doctorDebug", "Retrieving stepCount, coinCount and unprocessedSteps from SharedPreferences");
 
+        count = getView().findViewById(R.id.stepCounter);
+        coinCount = getView().findViewById(R.id.totalPointsCounter);
+
+        //Getting the step and coin counts from SharedPreferences
+        SharedPreferences prefGet = this.getActivity().getSharedPreferences(STEP_PREF, Activity.MODE_PRIVATE);
+        double lastCoinCountSaved = Double.parseDouble(prefGet.getString("double", "0.01"));
+        int lastStepCountSaved = prefGet.getInt("StepCount", 0);
+        int lastUnprocessedStepCountSaved = prefGet.getInt("UnprocStepCount", 0);
+
+        steps = lastStepCountSaved;
+        coins = lastStepCountSaved;
+        unprocessedSteps = lastUnprocessedStepCountSaved;
+        coinCount.setText(Double.toString(lastCoinCountSaved));
+        count.setText(Integer.toString(lastStepCountSaved));
+
+        registerSensorListener();
     }
 
 
@@ -210,7 +230,22 @@ public class MainFragment extends Fragment implements SensorEventListener {
     @Override
     public void onPause() {
         super.onPause();
+
         Log.d("doctorDebug", "onPause()");
+        Log.d("doctorDebug", "Depositing stepCount, coinCount and unprocessedSteps to SharedPreferences");
+
+        count = getView().findViewById(R.id.stepCounter);
+        coinCount = getView().findViewById(R.id.totalPointsCounter);
+
+        SharedPreferences prefPut = this.getActivity().getSharedPreferences(STEP_PREF,Activity.MODE_PRIVATE);
+        SharedPreferences.Editor prefEditor = prefPut.edit();
+
+        //Saving the current counters into the SharedPreferences
+        prefEditor.putInt("StepCount", Integer.parseInt(count.getText().toString()));
+        prefEditor.putString("double", ((coinCount.getText().toString())));
+        prefEditor.putInt("UnprocStepCount", unprocessedSteps);
+        prefEditor.commit();
+
         activityRunning = false;
         // if you unregister the last listener, the hardware will stop detecting step events
 //        sensorManager.unregisterListener(this);
@@ -241,6 +276,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
 
     public void updateUI(){
         count.setText(Integer.toString(this.steps));
+        coinCount.setText(Double.toString(this.coins));
 
     }
 
