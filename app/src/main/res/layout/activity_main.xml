@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <FrameLayout
+
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,5 +28,7 @@
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:menu="@menu/navigation" />
-
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
