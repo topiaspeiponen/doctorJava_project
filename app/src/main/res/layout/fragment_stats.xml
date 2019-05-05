@@ -8,13 +8,13 @@
     tools:context=".StatsFragment">
 
     <Button
-        android:id="@+id/buttonLastWeek"
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonDummy"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:text="@string/text_stats_dummy_add"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonClear"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.961"
         app:layout_constraintStart_toEndOf="@+id/textView" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLastWeek" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonDummy" />
 
     <TextView
         android:id="@+id/textView"
@@ -36,6 +36,17 @@
         android:layout_marginTop="31dp"
         android:text="@string/text_stats_last2weeks"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonClear"
+        android:layout_width="71dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="21dp"
+        android:text="Clear"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDummy"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
