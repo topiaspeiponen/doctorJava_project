@@ -83,8 +83,8 @@
 
     <ImageView
         android:id="@+id/Arrow1"
-        android:layout_width="27dp"
-        android:layout_height="56dp"
+        android:layout_width="33dp"
+        android:layout_height="64dp"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toStartOf="@+id/UpgradeBuilding1"
@@ -95,10 +95,10 @@
 
     <ImageView
         android:id="@+id/Arrow2"
-        android:layout_width="25dp"
-        android:layout_height="57dp"
+        android:layout_width="33dp"
+        android:layout_height="64dp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toStartOf="@+id/UpgradeBuilding3"
         app:layout_constraintHorizontal_bias="0.0"
@@ -108,8 +108,8 @@
 
     <ImageView
         android:id="@+id/Arrow3"
-        android:layout_width="27dp"
-        android:layout_height="56dp"
+        android:layout_width="33dp"
+        android:layout_height="64dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="60dp"
