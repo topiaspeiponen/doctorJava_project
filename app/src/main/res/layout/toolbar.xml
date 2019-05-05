@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:elevation="4dp"
+    android:id="@+id/toolbar"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app.popupTheme="@style/ThemeOverlay.AppCompat.Light"
+
+    >
+
+    <TextView
+        android:id="@+id/asd1"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+
+
+        android:inputType="text"
+        android:padding="8dp"
+        android:text="0 steps" />
+
+    <TextView
+        android:id="@+id/asd2"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+
+
+        android:inputType="text"
+        android:padding="8dp"
+        android:text="processed 0" />
+
+    <TextView
+        android:id="@+id/asd3"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+
+
+        android:inputType="text"
+        android:padding="8dp"
+        android:text="coins 0" />
+</androidx.appcompat.widget.Toolbar>

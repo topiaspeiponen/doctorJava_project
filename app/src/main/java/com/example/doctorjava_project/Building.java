@@ -9,6 +9,8 @@ public class Building {
     protected double basePrice;
     //End saved
 
+    private double priceMultiplier = 1.5;
+
     protected Building produces;
 
     public Building(Building produces, int bought, long total, double basePrice){
@@ -18,8 +20,39 @@ public class Building {
         this.basePrice = basePrice;
     }
 
+    public int getBought(){
+        return this.bought;
+    }
+
+    public long getTotal(){
+        return this.total;
+    }
+
+    public double getPrice(){
+        return this.basePrice * (Math.pow(priceMultiplier, this.bought));
+    }
+
+    public void addTotal(long num){
+        this.total += num;
+    }
+
+    public double buy(double currentCoins){
+        if (currentCoins >= getPrice()){
+            double priceTemp = getPrice();
+            this.bought++;
+            return priceTemp;
+
+        }
+        return -1.0;
+
+    }
+
+    public int getMultiplier(){
+        return (int) Math.pow(2, Math.floor(this.total/25)) ;  //Multiplier starts at 1 and gets +1 for every 25 bought. Multiplies production
+    }
 
     public double produce(){
+        this.produces.addTotal(this.total * getMultiplier());
         return -1.0;
     }
 

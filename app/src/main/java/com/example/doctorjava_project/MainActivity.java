@@ -11,11 +11,15 @@ import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.provider.ContactsContract;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -44,12 +48,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+
+        //Loading the default fragment, which is the MainFragment
         //Loading the default fragment, which is the MainFragment.
         loadFragment(new MainFragment());
 
         //Getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
+
+
 
         /**
          * The next 25 lines of codes handle the data sending at daily interval.
@@ -83,6 +95,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         }
     }
+
+
+
+
 
     /**
      * Loads the fragment given as a parameter and replaces

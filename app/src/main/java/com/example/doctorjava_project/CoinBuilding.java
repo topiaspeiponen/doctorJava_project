@@ -15,6 +15,6 @@ public class CoinBuilding extends Building {
     }
 
     private double calculateCoinProduction(){
-        return baseProduction; //dummy version of formula
+        return baseProduction * this.total * getMultiplier(); //dummy version of formula
     }
 }

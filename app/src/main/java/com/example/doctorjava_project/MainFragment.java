@@ -3,7 +3,6 @@ package com.example.doctorjava_project;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -16,13 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -48,11 +46,12 @@ public class MainFragment extends Fragment implements SensorEventListener {
 
     private Context context;
     private SensorManager sensorManager;
-    private TextView count, coinCount;
+    private TextView count, coinCount, processedStepCount;
     boolean activityRunning = true;
     private Button stepPlusButton;
     private static final String STEP_PREF = "StepCountPref";
     private static final String COIN_PREF = "CoinCountPref";
+    private static final String PROCESSED_PREF = "ProcessedCountPref";
 
     private int deltaStepTracker = -1;
 
@@ -76,12 +75,12 @@ public class MainFragment extends Fragment implements SensorEventListener {
     }
 
     //creating Buildings
-    private Building coinBuilding = new CoinBuilding(1, 1, 1);
+    private Building coinBuilding = new CoinBuilding(1, 1, 0.05);
     private Building building1 = new Building(coinBuilding, 0, 0, 1);
-    private Building building2 = new Building(building1, 0, 0, 1);
-    private Building building3 = new Building(building2, 0, 0, 1);
-    private Building building4 = new Building(building3, 0, 0, 1);
-    private Building building5 = new Building(building4, 0, 0, 1);
+    private Building building2 = new Building(building1, 0, 0, 100);
+    private Building building3 = new Building(building2, 0, 0, 10000);
+    private Building building4 = new Building(building3, 0, 0, 1000000);
+    private Building building5 = new Building(building4, 0, 0, 100000000);
     private ArrayList<Building> buildingList = new ArrayList<Building>(Arrays.asList(coinBuilding, building1, building2, building3, building4, building5));
     //buildingList contains references to all buildings, with index 0 being a CoinBuilding.
 
@@ -103,7 +102,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
     public void debugAddSteps(View v){
         this.steps += 5;
         this.unprocessedSteps +=5;
-        this.coins += 5;
+
         this.updateUI();
     }
 
@@ -151,8 +150,9 @@ public class MainFragment extends Fragment implements SensorEventListener {
         Log.d("doctorDebug", "onResume()");
         Log.d("doctorDebug", "Retrieving stepCount, coinCount and unprocessedSteps from SharedPreferences");
 
-        count = getView().findViewById(R.id.stepCounter);
-        coinCount = getView().findViewById(R.id.totalPointsCounter);
+
+        count = getView().findViewById(R.id.stepCount);
+        coinCount = getView().findViewById(R.id.coinCount);
 
         //Getting the step and coin counts from SharedPreferences
         SharedPreferences prefGet = this.getActivity().getSharedPreferences(STEP_PREF, Activity.MODE_PRIVATE);
@@ -234,8 +234,9 @@ public class MainFragment extends Fragment implements SensorEventListener {
         Log.d("doctorDebug", "onPause()");
         Log.d("doctorDebug", "Depositing stepCount, coinCount and unprocessedSteps to SharedPreferences");
 
-        count = getView().findViewById(R.id.stepCounter);
-        coinCount = getView().findViewById(R.id.totalPointsCounter);
+
+        count = getView().findViewById(R.id.stepCount);
+        coinCount = getView().findViewById(R.id.coinCount);
 
         SharedPreferences prefPut = this.getActivity().getSharedPreferences(STEP_PREF,Activity.MODE_PRIVATE);
         SharedPreferences.Editor prefEditor = prefPut.edit();
@@ -274,6 +275,13 @@ public class MainFragment extends Fragment implements SensorEventListener {
         updateUI();
     }
 
+    public void buyBuilding(Building building){
+        double coinsSpent = building.buy(this.coins);
+        if (coinsSpent > 0){
+            this.coins -= coinsSpent;
+        }
+    }
+
     public void updateUI(){
         count.setText(Integer.toString(this.steps));
         coinCount.setText(Double.toString(this.coins));
@@ -298,9 +306,16 @@ public class MainFragment extends Fragment implements SensorEventListener {
         //TODO: game logic
         Log.d("updateTest", "steps count: " + this.steps);
         Log.d("updateTest", "unprocessedSteps count: " + this.unprocessedSteps);
+        for (int i = 0; i < this.buildingList.size(); i++){
+            double produced = this.buildingList.get(i).produce();
+            if (produced > 0){
+                Log.d("updateTest", "Coins produced: " + produced);
+                this.coins += produced;
+            }
+        }
     }
 
-    final Handler myHandler = new Handler(); //For updating GUI on regular intervals. Android dislikes you manually doing that.
+    final Handler myHandler = new Handler(); //For updating GUI on regular intervals. Android dislikes you manually doing that. Need handler + runnable
 
 
     final Runnable myRunnable = new Runnable() {  //Android handler will run this to update GUI
