@@ -75,12 +75,12 @@ public class MainFragment extends Fragment implements SensorEventListener {
     }
 
     //creating Buildings
-    private Building coinBuilding = new CoinBuilding(1, 1, 1);
+    private Building coinBuilding = new CoinBuilding(1, 1, 0.05);
     private Building building1 = new Building(coinBuilding, 0, 0, 1);
-    private Building building2 = new Building(building1, 0, 0, 1);
-    private Building building3 = new Building(building2, 0, 0, 1);
-    private Building building4 = new Building(building3, 0, 0, 1);
-    private Building building5 = new Building(building4, 0, 0, 1);
+    private Building building2 = new Building(building1, 0, 0, 100);
+    private Building building3 = new Building(building2, 0, 0, 10000);
+    private Building building4 = new Building(building3, 0, 0, 1000000);
+    private Building building5 = new Building(building4, 0, 0, 100000000);
     private ArrayList<Building> buildingList = new ArrayList<Building>(Arrays.asList(coinBuilding, building1, building2, building3, building4, building5));
     //buildingList contains references to all buildings, with index 0 being a CoinBuilding.
 
