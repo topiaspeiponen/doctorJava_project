@@ -11,8 +11,12 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="192dp" />
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 
     <ImageButton
         android:id="@+id/CoinBuilding"
@@ -24,6 +28,89 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Debug \n numbers"
+        app:layout_constraintBottom_toBottomOf="@+id/Arrow4"
+        app:layout_constraintEnd_toStartOf="@+id/coinCount"
+        app:layout_constraintStart_toEndOf="@+id/Arrow4"
+        app:layout_constraintTop_toTopOf="@+id/Arrow4" />
+
+    <TextView
+        android:id="@+id/stepCount"
+        android:layout_width="10dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="0"
+        app:layout_constraintBottom_toTopOf="@+id/coinCount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/Arrow4"
+        app:layout_constraintTop_toBottomOf="@+id/UpgradeBuilding3" />
+
+    <TextView
+        android:id="@+id/coinCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="0"
+        app:layout_constraintBottom_toTopOf="@+id/processedStepCount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/Arrow4"
+        app:layout_constraintTop_toBottomOf="@+id/stepCount" />
+
+    <TextView
+        android:id="@+id/processedStepCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="0"
+        app:layout_constraintBottom_toTopOf="@+id/UpgradeBuilding5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/Arrow4"
+        app:layout_constraintTop_toBottomOf="@+id/coinCount" />
+
+    <TextView
+        android:id="@+id/Test_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Test button"
+        app:layout_constraintBottom_toTopOf="@+id/UpgradeBuilding2"
+        app:layout_constraintEnd_toStartOf="@+id/stepAdd"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CoinBuilding" />
+
+    <Button
+        android:id="@+id/stepAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="+5 step"
+        app:layout_constraintBottom_toTopOf="@+id/UpgradeBuilding2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CoinBuilding" />
 
     <ImageButton
         android:id="@+id/UpgradeBuilding1"
@@ -85,25 +172,21 @@
         android:id="@+id/Arrow1"
         android:layout_width="33dp"
         android:layout_height="64dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/CoinBuilding"
         app:layout_constraintEnd_toStartOf="@+id/UpgradeBuilding1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/CoinBuilding"
-        app:layout_constraintTop_toTopOf="@+id/fragment_container"
+        app:layout_constraintTop_toTopOf="@+id/CoinBuilding"
         app:srcCompat="@drawable/arrowleft" />
 
     <ImageView
         android:id="@+id/Arrow2"
         android:layout_width="33dp"
         android:layout_height="64dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/UpgradeBuilding3"
         app:layout_constraintEnd_toStartOf="@+id/UpgradeBuilding3"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/UpgradeBuilding2"
-        app:layout_constraintTop_toBottomOf="@+id/Arrow1"
+        app:layout_constraintTop_toTopOf="@+id/UpgradeBuilding3"
         app:srcCompat="@drawable/arrowright" />
 
     <ImageView
@@ -111,41 +194,34 @@
         android:layout_width="33dp"
         android:layout_height="64dp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="60dp"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_container"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/UpgradeBuilding4"
+        app:layout_constraintEnd_toStartOf="@+id/UpgradeBuilding5"
         app:layout_constraintStart_toEndOf="@+id/UpgradeBuilding4"
-        app:layout_constraintTop_toBottomOf="@+id/Arrow2"
-        app:layout_constraintVertical_bias="0.946"
+        app:layout_constraintTop_toTopOf="@+id/UpgradeBuilding4"
         app:srcCompat="@drawable/arrowleft" />
 
     <ImageView
         android:id="@+id/Arrow4"
         android:layout_width="27dp"
         android:layout_height="56dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="156dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.225"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/UpgradeBuilding4"
+        app:layout_constraintEnd_toEndOf="@+id/UpgradeBuilding2"
+        app:layout_constraintStart_toStartOf="@+id/UpgradeBuilding2"
+        app:layout_constraintTop_toBottomOf="@+id/UpgradeBuilding2"
         app:srcCompat="@drawable/arrowup" />
 
     <ImageView
         android:id="@+id/Arrow5"
         android:layout_width="27dp"
         android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.763"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.383"
+        app:layout_constraintBottom_toTopOf="@+id/UpgradeBuilding3"
+        app:layout_constraintEnd_toEndOf="@+id/UpgradeBuilding1"
+        app:layout_constraintStart_toStartOf="@+id/UpgradeBuilding1"
+        app:layout_constraintTop_toBottomOf="@+id/UpgradeBuilding1"
         app:srcCompat="@drawable/arrowup" />
 
     <TextView

@@ -102,4 +102,6 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="text_stats_dummy_add">Add dummy row</string>
+    <string name="text_stats_last2weeks">History from the last two weeks</string>
 </resources>

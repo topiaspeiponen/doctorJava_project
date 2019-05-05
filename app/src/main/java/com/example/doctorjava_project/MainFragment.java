@@ -3,7 +3,6 @@ package com.example.doctorjava_project;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -16,13 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -48,11 +46,12 @@ public class MainFragment extends Fragment implements SensorEventListener {
 
     private Context context;
     private SensorManager sensorManager;
-    private TextView count, coinCount;
+    private TextView count, coinCount, processedStepCount;
     boolean activityRunning = true;
     private Button stepPlusButton;
     private static final String STEP_PREF = "StepCountPref";
     private static final String COIN_PREF = "CoinCountPref";
+    private static final String PROCESSED_PREF = "ProcessedCountPref";
 
     private int deltaStepTracker = -1;
 
@@ -151,8 +150,9 @@ public class MainFragment extends Fragment implements SensorEventListener {
         Log.d("doctorDebug", "onResume()");
         Log.d("doctorDebug", "Retrieving stepCount, coinCount and unprocessedSteps from SharedPreferences");
 
-        count = getView().findViewById(R.id.stepCounter);
-        coinCount = getView().findViewById(R.id.totalPointsCounter);
+
+        count = getView().findViewById(R.id.stepCount);
+        coinCount = getView().findViewById(R.id.coinCount);
 
         //Getting the step and coin counts from SharedPreferences
         SharedPreferences prefGet = this.getActivity().getSharedPreferences(STEP_PREF, Activity.MODE_PRIVATE);
@@ -234,8 +234,9 @@ public class MainFragment extends Fragment implements SensorEventListener {
         Log.d("doctorDebug", "onPause()");
         Log.d("doctorDebug", "Depositing stepCount, coinCount and unprocessedSteps to SharedPreferences");
 
-        count = getView().findViewById(R.id.stepCounter);
-        coinCount = getView().findViewById(R.id.totalPointsCounter);
+
+        count = getView().findViewById(R.id.stepCount);
+        coinCount = getView().findViewById(R.id.coinCount);
 
         SharedPreferences prefPut = this.getActivity().getSharedPreferences(STEP_PREF,Activity.MODE_PRIVATE);
         SharedPreferences.Editor prefEditor = prefPut.edit();
