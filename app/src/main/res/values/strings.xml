@@ -2,7 +2,7 @@
     <string name="app_name">doctorJava_project</string>
     <string name="title_home">Home</string>
     <string name="title_statistics">Statistics</string>
-    <string name="title_store">Store</string>
+    <string name="title_info">Info</string>
     <string name="title_activity_stats">StatsActivity</string>
     <string name="title_activity_store">StoreActivity</string>
     <string name="title_activity_settings">Settings</string>
