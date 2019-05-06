@@ -153,6 +153,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
 
         count = getView().findViewById(R.id.stepCount);
         coinCount = getView().findViewById(R.id.coinCount);
+        processedStepCount = getView().findViewById(R.id.processedStepCount);
 
         //Getting the step and coin counts from SharedPreferences
         SharedPreferences prefGet = this.getActivity().getSharedPreferences(STEP_PREF, Activity.MODE_PRIVATE);
@@ -165,6 +166,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
         unprocessedSteps = lastUnprocessedStepCountSaved;
         coinCount.setText(Double.toString(lastCoinCountSaved));
         count.setText(Integer.toString(lastStepCountSaved));
+        processedStepCount.setText(Integer.toString(lastUnprocessedStepCountSaved));
 
         registerSensorListener();
     }
@@ -237,6 +239,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
 
         count = getView().findViewById(R.id.stepCount);
         coinCount = getView().findViewById(R.id.coinCount);
+        processedStepCount = getView().findViewById(R.id.processedStepCount);
 
         SharedPreferences prefPut = this.getActivity().getSharedPreferences(STEP_PREF,Activity.MODE_PRIVATE);
         SharedPreferences.Editor prefEditor = prefPut.edit();
@@ -244,7 +247,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
         //Saving the current counters into the SharedPreferences
         prefEditor.putInt("StepCount", Integer.parseInt(count.getText().toString()));
         prefEditor.putString("double", ((coinCount.getText().toString())));
-        prefEditor.putInt("UnprocStepCount", unprocessedSteps);
+        prefEditor.putInt("UnprocStepCount", Integer.parseInt(processedStepCount.getText().toString()));
         prefEditor.commit();
 
         activityRunning = false;
@@ -285,7 +288,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
     public void updateUI(){
         count.setText(Integer.toString(this.steps));
         coinCount.setText(Double.toString(this.coins));
-
+        processedStepCount.setText(Integer.toString(this.unprocessedSteps));
     }
 
     @Override
