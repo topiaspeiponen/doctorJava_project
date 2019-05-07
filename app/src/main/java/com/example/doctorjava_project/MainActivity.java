@@ -2,6 +2,7 @@ package com.example.doctorjava_project;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -41,7 +42,7 @@ import java.util.Calendar;
  */
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
-
+    public static Context contextOfMain;
     private SensorManager sensorManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +51,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        contextOfMain = getApplicationContext();
 
-
-
-        //Loading the default fragment, which is the MainFragment
         //Loading the default fragment, which is the MainFragment.
         loadFragment(new MainFragment());
 
@@ -149,6 +148,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
 
         return loadFragment(fragment);
+    }
+
+    public static Context getContextOfApplication(){
+        return contextOfMain;
     }
 
 }

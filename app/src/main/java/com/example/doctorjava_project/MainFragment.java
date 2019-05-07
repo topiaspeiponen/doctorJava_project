@@ -9,6 +9,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +53,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
     private static final String STEP_PREF = "StepCountPref";
     private static final String COIN_PREF = "CoinCountPref";
     private static final String PROCESSED_PREF = "ProcessedCountPref";
+    Context applicationContext = MainActivity.getContextOfApplication();
 
     private int deltaStepTracker = -1;
 
@@ -125,7 +127,6 @@ public class MainFragment extends Fragment implements SensorEventListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -156,10 +157,10 @@ public class MainFragment extends Fragment implements SensorEventListener {
         processedStepCount = getView().findViewById(R.id.processedStepCount);
 
         //Getting the step and coin counts from SharedPreferences
-        SharedPreferences prefGet = this.getActivity().getSharedPreferences(STEP_PREF, Activity.MODE_PRIVATE);
-        double lastCoinCountSaved = Double.parseDouble(prefGet.getString("double", "0.01"));
-        int lastStepCountSaved = prefGet.getInt("StepCount", 0);
-        int lastUnprocessedStepCountSaved = prefGet.getInt("UnprocStepCount", 0);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext);
+        double lastCoinCountSaved = Double.parseDouble(prefs.getString("double", "0.0"));
+        int lastStepCountSaved = prefs.getInt("StepCount", 0);
+        int lastUnprocessedStepCountSaved = prefs.getInt("UnprocStepCount", 0);
 
         steps = lastStepCountSaved;
         coins = lastStepCountSaved;
@@ -241,8 +242,8 @@ public class MainFragment extends Fragment implements SensorEventListener {
         coinCount = getView().findViewById(R.id.coinCount);
         processedStepCount = getView().findViewById(R.id.processedStepCount);
 
-        SharedPreferences prefPut = this.getActivity().getSharedPreferences(STEP_PREF,Activity.MODE_PRIVATE);
-        SharedPreferences.Editor prefEditor = prefPut.edit();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext);
+        SharedPreferences.Editor prefEditor = prefs.edit();
 
         //Saving the current counters into the SharedPreferences
         prefEditor.putInt("StepCount", Integer.parseInt(count.getText().toString()));

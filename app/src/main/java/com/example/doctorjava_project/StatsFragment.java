@@ -1,7 +1,10 @@
 package com.example.doctorjava_project;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +35,7 @@ public class StatsFragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     private static final String TAG = "StatsFragment";
+    Context applicationContext = MainActivity.getContextOfApplication();
 
     @Nullable
     @Override
@@ -67,8 +71,6 @@ public class StatsFragment extends Fragment {
         weekButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d(TAG, "Dummy row created!");
-                Date date = Calendar.getInstance().getTime();
-                db.dayStatsDao().insertAll(new DayStats(date, date.getSeconds()));
 
                 //Accesses the database
                 final DayStatsDatabase db = Room.databaseBuilder(getContext(), DayStatsDatabase.class, "production")
@@ -76,11 +78,25 @@ public class StatsFragment extends Fragment {
                         .fallbackToDestructiveMigration()
                         .build();
 
+                /**
+                 * Getting the current StepCount for the day and resetting it to 0 and saving it again
+                 */
+                Date date = Calendar.getInstance().getTime();
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext);
+                int lastStepCountSaved = prefs.getInt("StepCount", 0);
+                Log.d(TAG, Integer.toString(lastStepCountSaved));
+
+                db.dayStatsDao().insertAll(new DayStats(date, lastStepCountSaved));
+
                 //Gets all the objects in DayStats from the database and savesa them into a list
                 final List<DayStats> dayStatsList = db.dayStatsDao().getAllDayStats();
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 adapter = new DayStatsAdapter(dayStatsList);
                 recyclerView.setAdapter(adapter);
+
+                SharedPreferences.Editor prefEditor = prefs.edit();
+                prefEditor.putInt("StepCount", 0);
+                prefEditor.commit();
             }
         });
 
