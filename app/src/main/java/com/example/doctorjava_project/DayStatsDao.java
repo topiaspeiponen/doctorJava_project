@@ -20,7 +20,7 @@ import androidx.room.Query;
  */
 @Dao
 public interface DayStatsDao {
-    @Query("SELECT * FROM day_stats ORDER BY date(date) DESC LIMIT 14")
+    @Query("SELECT * FROM day_stats ORDER BY date(date) ASC LIMIT 14")
     List<DayStats> getAllDayStats();
 
     @Insert

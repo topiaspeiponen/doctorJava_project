@@ -1,8 +1,11 @@
 package com.example.doctorjava_project;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.util.Calendar;
@@ -21,6 +24,8 @@ import androidx.room.Room;
  */
 public class DataAlarm extends BroadcastReceiver {
     private static final String TAG = "DataAlarm";
+    Context applicationContext = MainActivity.getContextOfApplication();
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (!intent.hasExtra("activate")) {
@@ -32,7 +37,19 @@ public class DataAlarm extends BroadcastReceiver {
                     .fallbackToDestructiveMigration()
                     .build();
             Date date = Calendar.getInstance().getTime();
-            db.dayStatsDao().insertAll(new DayStats(date, date.getMinutes()));
+
+            /**
+             * Getting the current StepCount for the day, putting it into the DB
+             * and resetting it to 0 and saving it again
+             */
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext);
+            int lastStepCountSaved = prefs.getInt("StepCount", 0);
+
+            db.dayStatsDao().insertAll(new DayStats(date, lastStepCountSaved));
+
+            SharedPreferences.Editor prefEditor = prefs.edit();
+            prefEditor.putInt("StepCount", 0);
+            prefEditor.commit();
         }
     }
 }
