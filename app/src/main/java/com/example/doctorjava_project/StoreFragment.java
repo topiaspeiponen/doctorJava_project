@@ -37,15 +37,7 @@ public class StoreFragment extends Fragment implements ExampleDialog.ExampleDial
                     openDialog();
                 }
             });
-        TextView textviewlenght= (TextView) view.findViewById(R.id.textViewLenght);
-        Button lenghtButton = (Button) view.findViewById(R.id.LenghtButton);
-        lenghtButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                openDialoglenght();
-            }
-        });
                     return view;
 
 
