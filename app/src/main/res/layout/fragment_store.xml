@@ -16,33 +16,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="317dp"
-        android:layout_marginTop="301dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="382dp"
+        android:layout_marginStart="312dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="645dp"
         android:text="Info" />
 
-    <Button
-        android:id="@+id/LenghtButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="287dp"
-        android:layout_marginEnd="283dp"
-        android:layout_marginBottom="396dp"
-        android:text="Lenght" />
-
-    <TextView
-        android:id="@+id/textViewLenght"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="155dp"
-        android:layout_marginBottom="401dp"
-        android:text="TextView" />
 </RelativeLayout>
