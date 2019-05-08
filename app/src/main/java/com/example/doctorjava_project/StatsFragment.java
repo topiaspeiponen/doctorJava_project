@@ -57,6 +57,7 @@ public class StatsFragment extends Fragment {
 
         //Gets all the objects in DayStats from the database and savesa them into a list
         final List<DayStats> dayStatsList = db.dayStatsDao().getAllDayStats();
+        db.close();
 
         //Implementing the list into the recyclerView using an adapter
         recyclerView = getView().findViewById(R.id.RecyclerView);
@@ -90,6 +91,8 @@ public class StatsFragment extends Fragment {
 
                 //Gets all the objects in DayStats from the database and savesa them into a list
                 final List<DayStats> dayStatsList = db.dayStatsDao().getAllDayStats();
+                db.close();
+
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 adapter = new DayStatsAdapter(dayStatsList);
                 recyclerView.setAdapter(adapter);
@@ -116,6 +119,8 @@ public class StatsFragment extends Fragment {
 
                 //Gets all the objects in DayStats from the database and savesa them into a list
                 final List<DayStats> dayStatsList = db.dayStatsDao().getAllDayStats();
+                db.close();
+
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 adapter = new DayStatsAdapter(dayStatsList);
                 recyclerView.setAdapter(adapter);

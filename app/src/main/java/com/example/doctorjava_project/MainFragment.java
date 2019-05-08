@@ -20,11 +20,13 @@ import android.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 /**
  * @author Created by Topias on 25/04/2019.
@@ -169,6 +171,49 @@ public class MainFragment extends Fragment implements SensorEventListener {
         count.setText(Integer.toString(lastStepCountSaved));
         processedStepCount.setText(Integer.toString(lastUnprocessedStepCountSaved));
 
+        /**
+         * Retrieving all the building data from the database
+         */
+
+        //Accesses the database
+        final BuildingDataDatabase db = Room.databaseBuilder(applicationContext, BuildingDataDatabase.class, "building_production")
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build();
+
+        /**
+         * Test if the database list is currently empty
+         * If it's NOT empty, get all the building data
+         */
+        final List<BuildingData> testList = db.buildingDataDao().getAllBuildingData();
+        Log.d("doctorDebug", Integer.toString(testList.size()));
+        if (testList.isEmpty()) {
+            Log.d("doctorDebug", "BuildingData database is empty!");
+            db.close();
+        } else {
+            Log.d("doctorDebug", "Retrieving BuildingData from the BuildingData database!");
+
+            //Assign the variables from the database to these objects
+            BuildingData coinBuildingData = db.buildingDataDao().findOneBuilding(1);
+            BuildingData building1Data = db.buildingDataDao().findOneBuilding(2);
+            BuildingData building2Data = db.buildingDataDao().findOneBuilding(3);
+            BuildingData building3Data = db.buildingDataDao().findOneBuilding(4);
+            BuildingData building4Data = db.buildingDataDao().findOneBuilding(5);
+            BuildingData building5Data = db.buildingDataDao().findOneBuilding(6);
+
+            //Assign the variables to the buildings
+            coinBuilding = new CoinBuilding(coinBuildingData.getBought(), coinBuildingData.getTotal(), coinBuildingData.getBasePrice());
+            building1 = new Building(coinBuilding, building1Data.getBought(), building1Data.getTotal(), building1Data.getBasePrice());
+            building2 = new Building(building1, building2Data.getBought(), building2Data.getTotal(), building2Data.getBasePrice());
+            building3 = new Building(building2, building3Data.getBought(), building3Data.getTotal(), building3Data.getBasePrice());
+            building4 = new Building(building3, building4Data.getBought(), building4Data.getTotal(), building4Data.getBasePrice());
+            building5 = new Building(building4, building5Data.getBought(), building5Data.getTotal(), building5Data.getBasePrice());
+            buildingList = new ArrayList<Building>(Arrays.asList(coinBuilding, building1, building2, building3, building4, building5));
+
+            //Clear the table so that the ID finding system works for future saves
+            db.buildingDataDao().nukeTable();
+            db.close();
+        }
         registerSensorListener();
     }
 
@@ -251,6 +296,26 @@ public class MainFragment extends Fragment implements SensorEventListener {
         prefEditor.putInt("UnprocStepCount", Integer.parseInt(processedStepCount.getText().toString()));
         prefEditor.commit();
 
+        /**
+         * Saving the building data to their respective Room database
+         */
+
+        //Accesses the database
+        final BuildingDataDatabase db = Room.databaseBuilder(applicationContext, BuildingDataDatabase.class, "building_production")
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build();
+
+        //Saving the building data in order (coinBuilding to building5)
+        Log.d("doctorDebug", "Depositing building data into the BuildingData database!");
+        db.buildingDataDao().insertAll(new BuildingData(1, coinBuilding.getBought(), coinBuilding.getTotal(), coinBuilding.getPrice()));
+        db.buildingDataDao().insertAll(new BuildingData(2, building1.getBought(), building1.getTotal(), building1.getPrice()));
+        db.buildingDataDao().insertAll(new BuildingData(3, building2.getBought(), building2.getTotal(), building2.getPrice()));
+        db.buildingDataDao().insertAll(new BuildingData(4, building3.getBought(), building3.getTotal(), building3.getPrice()));
+        db.buildingDataDao().insertAll(new BuildingData(5, building4.getBought(), building4.getTotal(), building4.getPrice()));
+        db.buildingDataDao().insertAll(new BuildingData(6, building5.getBought(), building5.getTotal(), building5.getPrice()));
+        db.close();
+
         activityRunning = false;
         // if you unregister the last listener, the hardware will stop detecting step events
 //        sensorManager.unregisterListener(this);
@@ -324,7 +389,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
 
     final Runnable myRunnable = new Runnable() {  //Android handler will run this to update GUI
         public void run() {
-            Log.d("updateTimer", "updating");
+            //Log.d("updateTimer", "updating");
             checkTick();
             updateUI();
         }
