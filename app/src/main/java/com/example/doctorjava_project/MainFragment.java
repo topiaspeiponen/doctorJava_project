@@ -59,6 +59,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
     private static final String COIN_PREF = "CoinCountPref";
     private static final String PROCESSED_PREF = "ProcessedCountPref";
     Context applicationContext = MainActivity.getContextOfApplication();
+    private Button resetButton;
 
     //view variables for layout update
     private ImageButton bcButton;
@@ -194,6 +195,25 @@ public class MainFragment extends Fragment implements SensorEventListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        resetButton = getView().findViewById(R.id.resetButton);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("doctorDebug", "Building database nuked!");
+                //Accesses the database
+                final DayStatsDatabase db = Room.databaseBuilder(applicationContext, DayStatsDatabase.class, "building_production")
+                        .allowMainThreadQueries()
+                        .fallbackToDestructiveMigration()
+                        .build();
+
+                //Reset database
+                db.dayStatsDao().nukeTable();
+                db.close();
+            }});
     }
 
     @Override
