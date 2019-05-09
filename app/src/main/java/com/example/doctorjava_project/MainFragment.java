@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import java.math.BigDecimal;
@@ -60,6 +61,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
     private static final String PROCESSED_PREF = "ProcessedCountPref";
     Context applicationContext = MainActivity.getContextOfApplication();
     private Button resetButton;
+    private Boolean hardwareSensorWarningShowed;
 
     //view variables for layout update
     private ImageButton bcButton;
@@ -134,7 +136,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
+        hardwareSensorWarningShowed = false;
         return inflater.inflate(R.layout.fragment_main, null);
 
     }
@@ -213,6 +215,15 @@ public class MainFragment extends Fragment implements SensorEventListener {
                 //Reset database
                 db.dayStatsDao().nukeTable();
                 db.close();
+
+                //Reset buildings
+                coinBuilding = new CoinBuilding(1, 1, 0.05);
+                building1 = new Building(coinBuilding, 0, 0, 1);
+                building2 = new Building(building1, 0, 0, 100);
+                building3 = new Building(building2, 0, 0, 10000);
+                building4 = new Building(building3, 0, 0, 1000000);
+                building5 = new Building(building4, 0, 0, 100000000);
+                buildingList = new ArrayList<Building>(Arrays.asList(coinBuilding, building1, building2, building3, building4, building5));
             }});
     }
 
@@ -328,7 +339,11 @@ public class MainFragment extends Fragment implements SensorEventListener {
             Log.d("doctorDebug", "sensor registered");
         } else {
             Log.d("doctorDebug", "sensor was null");
-
+            Toast nullSensor = Toast.makeText(getActivity(), "Your phone or emulator does not support hardware StepSensor. Use StepTest button." ,Toast.LENGTH_SHORT);
+            if (!hardwareSensorWarningShowed){
+                nullSensor.show();
+                hardwareSensorWarningShowed = true;
+            }
 
         }
     }
@@ -443,6 +458,7 @@ public class MainFragment extends Fragment implements SensorEventListener {
         double coinsSpent = building.buy(this.coins);
         if (coinsSpent > 0){
             this.coins -= coinsSpent;
+            updateUI();
         }
     }
 
