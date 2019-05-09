@@ -12,10 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:text="Coins"
-        app:layout_constraintEnd_toStartOf="@+id/coin"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/CoinBuilding"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -24,10 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:text="Energy"
-        app:layout_constraintEnd_toStartOf="@+id/energy"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/CoinBuilding"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -36,10 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:text="Today's steps"
-        app:layout_constraintEnd_toStartOf="@+id/Blackfeet"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/CoinBuilding"
         app:layout_constraintTop_toTopOf="@+id/fragment_container" />
 
@@ -57,18 +48,26 @@
         android:id="@+id/energy"
         android:layout_width="24dp"
         android:layout_height="22dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/CoinBuilding"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/processedStepCount"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/coin"
         app:srcCompat="@drawable/energy" />
 
     <ImageView
         android:id="@+id/coin"
         android:layout_width="17dp"
         android:layout_height="18dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toStartOf="@+id/coinCount"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/Blackfeet"
         app:srcCompat="@drawable/coin" />
 
@@ -76,8 +75,11 @@
         android:id="@+id/Blackfeet"
         android:layout_width="17dp"
         android:layout_height="18dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toStartOf="@+id/stepCount"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/fragment_container"
         app:srcCompat="@drawable/feet" />
 
@@ -110,10 +112,8 @@
         android:id="@+id/CoinBuilding"
         android:layout_width="166dp"
         android:layout_height="153dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/UpgradeBuilding1"
-        app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:srcCompat="@color/colorAccent" />
@@ -122,32 +122,37 @@
         android:id="@+id/stepCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="124dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:text="0"
         app:layout_constraintEnd_toStartOf="@+id/resetButton"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/fragment_container" />
 
     <TextView
         android:id="@+id/coinCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="114dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:text="0"
         app:layout_constraintEnd_toStartOf="@+id/resetButton"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/stepCount" />
 
     <TextView
         android:id="@+id/processedStepCount"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="3dp"
-        android:layout_marginEnd="124dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="3dp"
         android:text="0"
-        app:layout_constraintBottom_toTopOf="@+id/CoinBuilding"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/resetButton"
-        app:layout_constraintTop_toBottomOf="@+id/coinCount"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/coinCount" />
 
     <Button
         android:id="@+id/stepAdd"
@@ -158,11 +163,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="+5 step"
-        app:layout_constraintBottom_toTopOf="@+id/Arrow3"
+        app:layout_constraintBottom_toTopOf="@+id/UpgradeBuilding5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toEndOf="@+id/Arrow4"
-        app:layout_constraintTop_toBottomOf="@+id/Arrow2"
+        app:layout_constraintTop_toBottomOf="@+id/UpgradeBuilding2"
         app:layout_constraintVertical_bias="0.572" />
 
     <ImageButton
@@ -170,7 +175,7 @@
         android:layout_width="166dp"
         android:layout_height="153dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:srcCompat="@android:color/holo_blue_dark" />
@@ -180,12 +185,11 @@
         android:layout_width="166dp"
         android:layout_height="153dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/UpgradeBuilding5"
         app:layout_constraintEnd_toEndOf="@+id/fragment_container"
         app:layout_constraintTop_toBottomOf="@+id/UpgradeBuilding1"
-        app:layout_constraintVertical_bias="0.407"
         app:srcCompat="@android:color/holo_green_light" />
 
     <ImageButton
@@ -194,25 +198,19 @@
         android:layout_height="153dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="33dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/UpgradeBuilding4"
-        app:layout_constraintEnd_toStartOf="@+id/UpgradeBuilding2"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CoinBuilding"
-        app:layout_constraintVertical_bias="0.407"
         app:srcCompat="@android:color/holo_purple" />
 
     <ImageButton
         android:id="@+id/UpgradeBuilding4"
         android:layout_width="166dp"
         android:layout_height="153dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
-        app:layout_constraintEnd_toStartOf="@+id/UpgradeBuilding5"
-        app:layout_constraintHorizontal_bias="0.325"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:color/holo_orange_dark" />
 
@@ -220,7 +218,7 @@
         android:id="@+id/UpgradeBuilding5"
         android:layout_width="166dp"
         android:layout_height="153dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toEndOf="parent"
@@ -230,12 +228,12 @@
         android:id="@+id/Arrow1"
         android:layout_width="33dp"
         android:layout_height="64dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/CoinBuilding"
         app:layout_constraintEnd_toStartOf="@+id/UpgradeBuilding1"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/CoinBuilding"
         app:layout_constraintTop_toTopOf="@+id/CoinBuilding"
-        app:layout_constraintVertical_bias="0.606"
         app:srcCompat="@drawable/arrowleft" />
 
     <ImageView
@@ -243,7 +241,9 @@
         android:layout_width="33dp"
         android:layout_height="64dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/UpgradeBuilding3"
         app:layout_constraintEnd_toStartOf="@+id/UpgradeBuilding2"
         app:layout_constraintStart_toEndOf="@+id/UpgradeBuilding3"
@@ -254,40 +254,41 @@
         android:id="@+id/Arrow3"
         android:layout_width="33dp"
         android:layout_height="64dp"
-        android:layout_marginStart="2dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/UpgradeBuilding4"
         app:layout_constraintEnd_toStartOf="@+id/UpgradeBuilding5"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/UpgradeBuilding4"
         app:layout_constraintTop_toTopOf="@+id/UpgradeBuilding4"
-        app:layout_constraintVertical_bias="0.505"
         app:srcCompat="@drawable/arrowleft" />
 
     <ImageView
         android:id="@+id/Arrow4"
         android:layout_width="27dp"
         android:layout_height="56dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/Arrow3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Arrow2"
-        app:layout_constraintVertical_bias="0.539"
+        app:layout_constraintBottom_toTopOf="@+id/UpgradeBuilding4"
+        app:layout_constraintEnd_toEndOf="@+id/UpgradeBuilding3"
+        app:layout_constraintStart_toStartOf="@+id/UpgradeBuilding3"
+        app:layout_constraintTop_toBottomOf="@+id/UpgradeBuilding3"
         app:srcCompat="@drawable/arrowup" />
 
     <ImageView
         android:id="@+id/Arrow5"
         android:layout_width="26dp"
         android:layout_height="49dp"
-        android:layout_marginStart="284dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/Arrow2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Arrow1"
-        app:layout_constraintVertical_bias="0.735"
+        app:layout_constraintBottom_toTopOf="@+id/UpgradeBuilding2"
+        app:layout_constraintEnd_toEndOf="@+id/UpgradeBuilding2"
+        app:layout_constraintStart_toStartOf="@+id/UpgradeBuilding2"
+        app:layout_constraintTop_toBottomOf="@+id/UpgradeBuilding1"
+        app:layout_constraintVertical_bias="0.49"
         app:srcCompat="@drawable/arrowup" />
 
     <TextView
@@ -1064,12 +1065,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Steptest"
-        app:layout_constraintBottom_toTopOf="@+id/Arrow3"
+        app:layout_constraintBottom_toTopOf="@+id/UpgradeBuilding5"
         app:layout_constraintEnd_toStartOf="@+id/stepAdd"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/Arrow4"
-        app:layout_constraintTop_toBottomOf="@+id/Arrow2"
-        app:layout_constraintVertical_bias="0.568" />
+        app:layout_constraintTop_toBottomOf="@+id/UpgradeBuilding2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
