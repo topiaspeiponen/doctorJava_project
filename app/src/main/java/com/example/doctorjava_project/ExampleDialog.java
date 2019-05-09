@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.doctorjava_project.R;
 
+/**
+ * The type Example dialog.
+ */
 public class ExampleDialog extends AppCompatDialogFragment  {
     private EditText editTextStepLenght;
     private ExampleDialogListener listener;
@@ -52,7 +55,15 @@ public class ExampleDialog extends AppCompatDialogFragment  {
         }
     }
 
+    /**
+     * The interface Example dialog listener.
+     */
     public interface ExampleDialogListener{
+        /**
+         * Apply texts.
+         *
+         * @param lenght the lenght
+         */
         void applyTexts(String lenght);
     }
 }

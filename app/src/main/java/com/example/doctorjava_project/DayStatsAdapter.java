@@ -23,8 +23,16 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class DayStatsAdapter extends RecyclerView.Adapter<DayStatsAdapter.ViewHolder> {
 
+    /**
+     * The Day stats array list.
+     */
     List<DayStats> dayStatsArrayList;
 
+    /**
+     * Instantiates a new Day stats adapter.
+     *
+     * @param dayStatsArrayList the day stats array list
+     */
     public DayStatsAdapter(List<DayStats> dayStatsArrayList) {
         this.dayStatsArrayList = dayStatsArrayList;
     }
@@ -48,9 +56,23 @@ public class DayStatsAdapter extends RecyclerView.Adapter<DayStatsAdapter.ViewHo
         return dayStatsArrayList.size();
     }
 
+    /**
+     * The type View holder.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView dayDate, dayPoints;
+        /**
+         * The Day date.
+         */
+        public TextView dayDate, /**
+         * The Day points.
+         */
+        dayPoints;
 
+        /**
+         * Instantiates a new View holder.
+         *
+         * @param itemView the item view
+         */
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 

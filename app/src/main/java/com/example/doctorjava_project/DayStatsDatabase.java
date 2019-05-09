@@ -15,5 +15,10 @@ import androidx.room.RoomDatabase;
 @Database(entities = {DayStats.class}, version = 3, exportSchema = false)
 @androidx.room.TypeConverters({TypeConverters.class})
 public abstract class DayStatsDatabase extends RoomDatabase {
+    /**
+     * Day stats dao day stats dao.
+     *
+     * @return the day stats dao
+     */
     public abstract DayStatsDao dayStatsDao();
 }

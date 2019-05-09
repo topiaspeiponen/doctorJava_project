@@ -20,12 +20,25 @@ import androidx.room.Query;
  */
 @Dao
 public interface DayStatsDao {
+    /**
+     * Gets all day stats.
+     *
+     * @return the all day stats
+     */
     @Query("SELECT * FROM day_stats ORDER BY date DESC LIMIT 14")
     List<DayStats> getAllDayStats();
 
+    /**
+     * Insert all.
+     *
+     * @param dayStats the day stats
+     */
     @Insert
     void insertAll(DayStats... dayStats);
 
+    /**
+     * Nuke table.
+     */
     @Query("DELETE FROM day_stats")
     public void nukeTable();
 }

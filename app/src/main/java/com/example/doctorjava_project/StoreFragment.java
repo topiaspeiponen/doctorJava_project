@@ -19,8 +19,8 @@ import androidx.fragment.app.Fragment;
  */
 
 /**
- * Inflates the layout (renders it in the memory), which makes it appear
- * in the screen view.
+ * The StoreFragment class (Loads on STATISTICS page) holds all the operations in regards
+ * to operating the statistics on the page.
  */
 public class StoreFragment extends Fragment implements ExampleDialog.ExampleDialogListener {
     private Button infoButton;
@@ -54,10 +54,17 @@ public class StoreFragment extends Fragment implements ExampleDialog.ExampleDial
         infoText.setMovementMethod(new ScrollingMovementMethod());
     }
 
+    /**
+     * Open dialog.
+     */
     public void openDialog(){
         StoreDialog storeDialog = new StoreDialog();
         storeDialog.show(getFragmentManager(),"Example");
     }
+
+    /**
+     * Open dialoglenght.
+     */
     public void openDialoglenght(){
         ExampleDialog exampleDialog = new ExampleDialog();
         exampleDialog.show(getFragmentManager(),"example dialog");

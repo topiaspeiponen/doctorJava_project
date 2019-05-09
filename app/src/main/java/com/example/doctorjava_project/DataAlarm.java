@@ -24,6 +24,9 @@ import androidx.room.Room;
  */
 public class DataAlarm extends BroadcastReceiver {
     private static final String TAG = "DataAlarm";
+    /**
+     * The Application context.
+     */
     Context applicationContext = MainActivity.getContextOfApplication();
 
     @Override

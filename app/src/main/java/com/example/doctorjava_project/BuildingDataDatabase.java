@@ -14,5 +14,10 @@ import androidx.room.RoomDatabase;
  */
 @Database(entities = {BuildingData.class}, version = 1, exportSchema = false)
 public abstract class BuildingDataDatabase extends RoomDatabase {
+    /**
+     * Building data dao building data dao.
+     *
+     * @return the building data dao
+     */
     public abstract BuildingDataDao buildingDataDao();
 }

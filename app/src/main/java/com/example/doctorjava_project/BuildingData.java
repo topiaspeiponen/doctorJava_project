@@ -24,6 +24,14 @@ public class BuildingData {
     @ColumnInfo (name = "base_price")
     private double basePrice;
 
+    /**
+     * Instantiates a new Building data.
+     *
+     * @param id        the id
+     * @param bought    the bought
+     * @param total     the total
+     * @param basePrice the base price
+     */
     public BuildingData(int id, int bought, long total, double basePrice) {
         this.id = id;
         this.bought = bought;
@@ -31,27 +39,75 @@ public class BuildingData {
         this.basePrice = basePrice;
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
-    } public void setId(int id) {
+    }
+
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Gets bought.
+     *
+     * @return the bought
+     */
     public int getBought() {
         return bought;
-    } public void setBought(int bought) {
+    }
+
+    /**
+     * Sets bought.
+     *
+     * @param bought the bought
+     */
+    public void setBought(int bought) {
         this.bought = bought;
     }
 
+    /**
+     * Gets total.
+     *
+     * @return the total
+     */
     public long getTotal() {
         return total;
-    } public void setTotal(long total) {
+    }
+
+    /**
+     * Sets total.
+     *
+     * @param total the total
+     */
+    public void setTotal(long total) {
         this.total = total;
     }
 
+    /**
+     * Gets base price.
+     *
+     * @return the base price
+     */
     public double getBasePrice() {
         return basePrice;
-    } public void setBasePrice(double basePrice) {
+    }
+
+    /**
+     * Sets base price.
+     *
+     * @param basePrice the base price
+     */
+    public void setBasePrice(double basePrice) {
         this.basePrice = basePrice;
     }
 }

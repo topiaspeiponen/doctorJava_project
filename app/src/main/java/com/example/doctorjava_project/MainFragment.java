@@ -39,8 +39,8 @@ import androidx.room.Room;
  */
 
 /**
- * Inflates the layout (renders it in the memory), which makes it appear
- * in the screen view.
+ * The MainFragment class (Loads on HOME page) holds the operations for running game logic and implementing all the
+ * necessary variables onto their respective views
  */
 public class MainFragment extends Fragment implements SensorEventListener {
 
@@ -54,11 +54,17 @@ public class MainFragment extends Fragment implements SensorEventListener {
     private Context context;
     private SensorManager sensorManager;
     private TextView count, coinCount, processedStepCount;
+    /**
+     * The Activity running.
+     */
     boolean activityRunning = true;
     private Button stepPlusButton;
     private static final String STEP_PREF = "StepCountPref";
     private static final String COIN_PREF = "CoinCountPref";
     private static final String PROCESSED_PREF = "ProcessedCountPref";
+    /**
+     * The Application context.
+     */
     Context applicationContext = MainActivity.getContextOfApplication();
     private Button resetButton;
     private Boolean hardwareSensorWarningShowed;
@@ -103,21 +109,47 @@ public class MainFragment extends Fragment implements SensorEventListener {
 
     private int deltaStepTracker = -1;
 
+    /**
+     * The Timer.
+     */
     Timer timer = new Timer();
+    /**
+     * The Update timer.
+     */
     Timer updateTimer = new Timer();
 
+    /**
+     * Gets coins.
+     *
+     * @return the coins
+     */
     public double getCoins() {
         return this.coins;
     }
 
+    /**
+     * Sets coins.
+     *
+     * @param amount the amount
+     */
     public void setCoins(double amount) {
         this.coins = amount;
     }
 
+    /**
+     * Add coins.
+     *
+     * @param amount the amount
+     */
     public void addCoins(double amount) {
         this.coins += amount;
     }
 
+    /**
+     * Remove coins.
+     *
+     * @param amount the amount
+     */
     public void removeCoins(double amount) {
         this.coins -= amount;
     }
@@ -141,6 +173,11 @@ public class MainFragment extends Fragment implements SensorEventListener {
 
     }
 
+    /**
+     * Debug add steps.
+     *
+     * @param v the v
+     */
     public void debugAddSteps(View v){
         this.steps += 5;
         this.unprocessedSteps +=5;
@@ -454,6 +491,11 @@ public class MainFragment extends Fragment implements SensorEventListener {
 
     }
 
+    /**
+     * Buy building.
+     *
+     * @param building the building
+     */
     public void buyBuilding(Building building){
         double coinsSpent = building.buy(this.coins);
         if (coinsSpent > 0){
@@ -462,6 +504,9 @@ public class MainFragment extends Fragment implements SensorEventListener {
         }
     }
 
+    /**
+     * Update ui.
+     */
     public void updateUI(){
         //Log.d("UIUpdate", "updateUI()");
         count.setText(Integer.toString(this.steps));
@@ -525,9 +570,15 @@ public class MainFragment extends Fragment implements SensorEventListener {
         }
     }
 
+    /**
+     * The My handler.
+     */
     final Handler myHandler = new Handler(); //For updating GUI on regular intervals. Android dislikes you manually doing that. Need handler + runnable
 
 
+    /**
+     * The My runnable.
+     */
     final Runnable myRunnable = new Runnable() {  //Android handler will run this to update GUI
         public void run() {
             //Log.d("updateTimer", "updating");
@@ -581,27 +632,57 @@ public class MainFragment extends Fragment implements SensorEventListener {
 
     }
 
-    //Building onclick methods
+    /**
+     * Coin building click.
+     *
+     * @param v the v
+     */
+//Building onclick methods
     public void coinBuildingClick(View v){
         buyBuilding(this.coinBuilding);
     }
 
+    /**
+     * B 1 click.
+     *
+     * @param v the v
+     */
     public void b1Click(View v){
         buyBuilding(this.building1);
     }
 
+    /**
+     * B 2 click.
+     *
+     * @param v the v
+     */
     public void b2Click(View v){
         buyBuilding(this.building2);
     }
 
+    /**
+     * B 3 click.
+     *
+     * @param v the v
+     */
     public void b3Click(View v){
         buyBuilding(this.building3);
     }
 
+    /**
+     * B 4 click.
+     *
+     * @param v the v
+     */
     public void b4Click(View v){
         buyBuilding(this.building4);
     }
 
+    /**
+     * B 5 click.
+     *
+     * @param v the v
+     */
     public void b5Click(View v){
         buyBuilding(this.building5);
     }

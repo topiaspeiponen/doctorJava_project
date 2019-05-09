@@ -28,13 +28,22 @@ import androidx.room.Room;
  */
 
 /**
- * Inflates the layout (renders it in the memory), which makes it appear
- * in the screen view.
+ * The StatsFragment class (Loads on STATISTICS page) holds all the operations in regards
+ * to operating the statistics on the page.
  */
 public class StatsFragment extends Fragment {
+    /**
+     * The Recycler view.
+     */
     RecyclerView recyclerView;
+    /**
+     * The Adapter.
+     */
     RecyclerView.Adapter adapter;
     private static final String TAG = "StatsFragment";
+    /**
+     * The Application context.
+     */
     Context applicationContext = MainActivity.getContextOfApplication();
 
     @Nullable

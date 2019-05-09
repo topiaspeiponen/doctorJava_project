@@ -7,10 +7,16 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * The LiveStepCounter class is responsible for running the steptracker
+ */
 public class LiveStepCounter  extends Activity implements SensorEventListener {
 
     private SensorManager sensorManager;
     private TextView count;
+    /**
+     * The Activity running.
+     */
     boolean activityRunning;
 
 

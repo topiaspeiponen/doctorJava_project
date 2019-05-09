@@ -7,6 +7,9 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+/**
+ * StoreDialog class opens up a dialog message on INFO page
+ */
 public class StoreDialog extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

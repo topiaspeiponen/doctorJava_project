@@ -34,14 +34,17 @@ import java.util.Calendar;
  * The MainActivity class essentially holds all the functionality in operating
  * the bottom navigation and implementing all the fragments inside the container
  * in activity_main.xml
- *
+ * <p>
  * It also holds the alarm system for depositing info gathered during the today
  * into the database
- *
+ * <p>
  * The activity_main.xml contains only the bottom navigation bar and the fragment container
  */
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
+    /**
+     * The constant contextOfMain.
+     */
     public static Context contextOfMain;
     private SensorManager sensorManager;
     @Override
@@ -150,6 +153,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return loadFragment(fragment);
     }
 
+    /**
+     * Get context of application context.
+     *
+     * @return the context
+     */
     public static Context getContextOfApplication(){
         return contextOfMain;
     }

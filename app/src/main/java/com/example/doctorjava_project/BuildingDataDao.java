@@ -19,15 +19,34 @@ import androidx.room.Query;
  */
 @Dao
 public interface BuildingDataDao {
+    /**
+     * Gets all building data.
+     *
+     * @return the all building data
+     */
     @Query("SELECT * FROM building_data")
     List<BuildingData> getAllBuildingData();
 
+    /**
+     * Find one building building data.
+     *
+     * @param id the id
+     * @return the building data
+     */
     @Query ("SELECT * FROM building_data WHERE id = :id LIMIT 1")
     public BuildingData findOneBuilding(int id);
 
+    /**
+     * Nuke table.
+     */
     @Query("DELETE FROM building_data")
     public void nukeTable();
 
+    /**
+     * Insert all.
+     *
+     * @param buildingData the building data
+     */
     @Insert
     void insertAll(BuildingData... buildingData);
 }

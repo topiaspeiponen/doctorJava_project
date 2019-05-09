@@ -25,25 +25,68 @@ public class DayStats {
     @ColumnInfo (name = "points")
     private int points;
 
+    /**
+     * Instantiates a new Day stats.
+     *
+     * @param dayDate the day date
+     * @param points  the points
+     */
     public DayStats(Date dayDate, int points) {
         this.dayDate = dayDate;
         this.points = points;
     }
+
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
-    } public void setId(int id) {
+    }
+
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Gets day date.
+     *
+     * @return the day date
+     */
     public Date getDayDate() {
         return dayDate;
-    } public void setDayDate(Date dayDate) {
+    }
+
+    /**
+     * Sets day date.
+     *
+     * @param dayDate the day date
+     */
+    public void setDayDate(Date dayDate) {
         this.dayDate = dayDate;
     }
 
+    /**
+     * Gets points.
+     *
+     * @return the points
+     */
     public int getPoints() {
         return points;
-    } public void setPoints(int points) {
+    }
+
+    /**
+     * Sets points.
+     *
+     * @param points the points
+     */
+    public void setPoints(int points) {
         this.points = points;
     }
 }

@@ -17,10 +17,23 @@ import androidx.room.TypeConverter;
  * This is used in database operations (Room)
  */
 public class TypeConverters {
+    /**
+     * From timestamp date.
+     *
+     * @param value the value
+     * @return the date
+     */
     @TypeConverter
     public static Date fromTimestamp(Long value) {
         return value == null ? null : new Date(value);
     }
+
+    /**
+     * Date to timestamp long.
+     *
+     * @param date the date
+     * @return the long
+     */
     @TypeConverter
     public static Long dateToTimestamp(Date date) {
         if (date == null) {
