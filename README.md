@@ -2,7 +2,7 @@
 
 This repository contains code for an application that was developed for a mobile health applications course.
 
-##Function
+#Function
 
 The application tracks steps, which the app logic will turn into "energy" which is in turn changed to coins.
 The coins can be used to purchase "buildings" which will accelerate the coin generation. Idea of the game is to
