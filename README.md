@@ -12,4 +12,5 @@ generate as much coin as possible, which means the user has to walk more.
 
 The game was created in Android studio using Java. Room was used for the database.
 
+
 Created by Topias Peiponen, Mikko Liljeqvist, Emil Besic
